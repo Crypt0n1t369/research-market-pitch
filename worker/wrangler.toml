@@ -5,4 +5,4 @@ compatibility_date = "2026-05-04"
 [[d1_databases]]
 binding = "DB"
 database_name = "research_market_signups"
-database_id = "REPLACE_AFTER_D1_CREATE"
+database_id = "41479d41-295e-4ccb-84ba-88f4435750fd"

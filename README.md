@@ -20,12 +20,12 @@ GitHub Pages is static and cannot securely store submissions by itself. The sign
 }
 ```
 
-To store centrally, add a private form/backend endpoint before `script.js` loads:
+The live site is wired to this private endpoint:
 
-```html
-<script>
-  window.RESEARCH_MARKET_SIGNUP_ENDPOINT = "https://your-private-form-endpoint.example/lead";
-</script>
+```text
+https://research-market-signups.kristapsbarons369.workers.dev/submit
 ```
 
-Until an endpoint is configured, submissions are preserved in the visitor browser localStorage and downloaded as structured JSON so no data is silently lost.
+Submissions are stored in Cloudflare D1. If the endpoint is unreachable, submissions are preserved in the visitor browser localStorage and downloaded as structured JSON so no data is silently lost.
+
+Admin export is available at `/submissions` with the saved `SIGNUPS_ADMIN_TOKEN`.
