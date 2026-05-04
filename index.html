@@ -3,117 +3,91 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Research Market — Capital for Open Intelligence</title>
-  <meta name="description" content="A mobile-first investor pitch for a research market where capital funds questions and contributors earn stake through validation work." />
+  <title>Research Market — Investor Pitch</title>
+  <meta name="description" content="A short investor pitch for a research market where capital funds questions and contributors earn stake through open iterative validation." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;650;750;850;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header class="topbar">
-    <a class="brand" href="#top">Research Market</a>
-    <a class="nav-cta" href="#signup">Request access</a>
+    <strong>Research Market</strong>
+    <span>Investor pitch · v0.1</span>
   </header>
 
-  <main id="top">
-    <section class="hero section">
-      <p class="eyebrow">Investor preview</p>
-      <h1>Capital for questions. Stake for answers.</h1>
-      <p class="lead">An open research market where institutions fund important topics and exceptional contributors earn ownership through validation work.</p>
-      <div class="actions">
-        <a class="button primary" href="#signup">Join the waitlist</a>
-        <a class="button ghost" href="#mechanism">See mechanism</a>
-      </div>
+  <main class="deck" id="deck" aria-label="Investor pitch slide deck">
+    <section class="slide hero" data-kicker="01 / Thesis">
+      <p class="kicker">01 / Thesis</p>
+      <h1>A market for research intelligence.</h1>
+      <p class="lead">Capital funds questions. Exceptional contributors mine stake by validating what is true, useful, and investable.</p>
     </section>
 
-    <section class="section card-grid" aria-label="Pitch summary">
-      <article class="card span">
-        <p class="eyebrow">Original thesis</p>
-        <h2>Bet intellectual energy on what matters.</h2>
-        <p>The initial idea was a market where contributors stake their intellectual energy on research and idea validation in an open, facilitated, cyclical process.</p>
-      </article>
-      <article class="card dark">
-        <p class="eyebrow">Pivot</p>
-        <h2>Research is the wedge.</h2>
-        <p>To enter the market, we focus on funded research topics from companies, states, and funds.</p>
-      </article>
-      <article class="card">
-        <p class="eyebrow">Contributor upside</p>
-        <h2>Mine stake by contributing signal.</h2>
-        <p>Researchers earn project stake by producing evidence, critique, validation, synthesis, and useful disagreement.</p>
-      </article>
+    <section class="slide" data-kicker="02 / Original idea">
+      <p class="kicker">02 / Original idea</p>
+      <h2>The first vision: bet intellectual energy.</h2>
+      <p>We began with a market where contributors could bet their intellectual energy on research and idea validation — openly, iteratively, and in facilitated cycles.</p>
     </section>
 
-    <section class="section" id="mechanism">
-      <p class="eyebrow">Mechanism</p>
-      <h2 class="section-title">Iterative open development.</h2>
-      <div class="steps">
-        <div><span>01</span><strong>Capital posts a topic</strong><p>A funder defines the question, constraints, and reward pool.</p></div>
-        <div><span>02</span><strong>Contributors enter</strong><p>Selected talent stakes work into research, validation, and critique.</p></div>
-        <div><span>03</span><strong>Facilitated cycles run</strong><p>The system surfaces evidence, disagreement, blind spots, and next questions.</p></div>
-        <div><span>04</span><strong>Synthesis compounds</strong><p>Outputs become decision-ready intelligence and seed the next cycle.</p></div>
-      </div>
-    </section>
-
-    <section class="section talent">
-      <p class="eyebrow">Talent network</p>
-      <h2 class="section-title">Universities plus proof-of-work talent.</h2>
-      <p>We collaborate with universities and work with PhD students, master’s students, and exceptional prodigies who have already proven themselves through their work.</p>
-    </section>
-
-    <section class="section outcome">
-      <p class="eyebrow">Why now</p>
-      <h2>Organizations need better ways to allocate research capital.</h2>
-      <p>We turn open validation into a market: capital chooses questions, talent competes to create signal, and every cycle makes the intelligence layer stronger.</p>
-    </section>
-
-    <section class="section signup" id="signup">
+    <section class="slide split" data-kicker="03 / Pivot">
       <div>
-        <p class="eyebrow">Early access</p>
-        <h2 class="section-title">Tell us who you are.</h2>
-        <p>We capture the key context needed to route each person: investor, institutional research buyer, university partner, or contributor.</p>
+        <p class="kicker">03 / Pivot</p>
+        <h2>Research is the market-entry wedge.</h2>
       </div>
+      <p>Instead of starting as a broad idea market, we start with funded research topics: companies, states, and funds deploy capital toward questions they need answered.</p>
+    </section>
 
-      <form id="signupForm" class="signup-form" method="post">
-        <label>
-          Email
-          <input required type="email" name="email" autocomplete="email" placeholder="you@domain.com" />
-        </label>
-        <label>
-          Name
-          <input required type="text" name="name" autocomplete="name" placeholder="Your name" />
-        </label>
-        <label>
-          I am a
-          <select required name="profile">
-            <option value="">Choose one</option>
-            <option>Investor / fund</option>
-            <option>Company research buyer</option>
-            <option>Government / state institution</option>
-            <option>University / lab partner</option>
-            <option>Research contributor</option>
-            <option>Other strategic partner</option>
-          </select>
-        </label>
-        <label>
-          What topics or expertise matter most to you?
-          <textarea required name="interests" rows="4" placeholder="AI safety, biotech, energy, policy, frontier markets…"></textarea>
-        </label>
-        <label>
-          Proof, capital, or collaboration you can bring
-          <textarea name="proof" rows="4" placeholder="Track record, thesis area, institution, capital mandate, portfolio, publications, etc."></textarea>
-        </label>
-        <button class="button primary full" type="submit">Submit interest</button>
-        <p id="formStatus" class="form-status" role="status"></p>
-        <p class="privacy">Submissions are structured as email, name, profile, interests, proof/context, timestamp, and source page. No passwords or sensitive documents.</p>
-      </form>
+    <section class="slide" data-kicker="04 / Product">
+      <p class="kicker">04 / Product</p>
+      <h2>Deploy capital on topics. Receive decision-grade intelligence.</h2>
+      <ul class="bullets">
+        <li>Funders post research topics, constraints, and reward pools.</li>
+        <li>Contributors enter by proving capability and staking work.</li>
+        <li>The platform turns evidence, critique, synthesis, and validation into usable outputs.</li>
+      </ul>
+    </section>
+
+    <section class="slide dark" data-kicker="05 / Mechanism">
+      <p class="kicker">05 / Mechanism</p>
+      <h2>Iterative open development.</h2>
+      <div class="cycle" aria-label="Open iterative development cycle">
+        <span>Question</span>
+        <span>Research</span>
+        <span>Critique</span>
+        <span>Synthesis</span>
+        <span>Next cycle</span>
+      </div>
+      <p>Every round is facilitated: claims are challenged, evidence is ranked, gaps are exposed, and the next research sprint becomes sharper.</p>
+    </section>
+
+    <section class="slide" data-kicker="06 / Contributors">
+      <p class="kicker">06 / Contributors</p>
+      <h2>Talent mines stake through contribution.</h2>
+      <p>Contributors earn project stake by producing signal: validation, literature maps, expert critique, model comparisons, interviews, experiments, and synthesis.</p>
+    </section>
+
+    <section class="slide split" data-kicker="07 / Network">
+      <div>
+        <p class="kicker">07 / Network</p>
+        <h2>Universities + proof-of-work talent.</h2>
+      </div>
+      <p>We collaborate with universities and work with PhD students, master’s students, and prodigies who have already proven themselves through their work.</p>
+    </section>
+
+    <section class="slide final" data-kicker="08 / Why it wins">
+      <p class="kicker">08 / Why it wins</p>
+      <h2>A new primitive for research capital.</h2>
+      <p>Today, research spend is slow, closed, and hard to verify. We make it open, cyclical, competitive, and compounding.</p>
+      <a class="cta" href="mailto:hello@example.com?subject=Research%20Market%20Pitch">Discuss the round</a>
     </section>
   </main>
 
-  <script>
-    window.RESEARCH_MARKET_SIGNUP_ENDPOINT = "https://research-market-signups.kristapsbarons369.workers.dev/submit";
-  </script>
+  <nav class="controls" aria-label="Slide controls">
+    <button id="prev" type="button" aria-label="Previous slide">←</button>
+    <span id="progress">1 / 8</span>
+    <button id="next" type="button" aria-label="Next slide">→</button>
+  </nav>
+
   <script src="script.js"></script>
 </body>
 </html>

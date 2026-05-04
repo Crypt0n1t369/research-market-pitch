@@ -1,65 +1,40 @@
-const SIGNUP_ENDPOINT = window.RESEARCH_MARKET_SIGNUP_ENDPOINT || '';
-const form = document.querySelector('#signupForm');
-const statusEl = document.querySelector('#formStatus');
+const deck = document.querySelector('#deck');
+const slides = [...document.querySelectorAll('.slide')];
+const prev = document.querySelector('#prev');
+const next = document.querySelector('#next');
+const progress = document.querySelector('#progress');
+let active = 0;
 
-function serializeForm(formEl) {
-  const data = Object.fromEntries(new FormData(formEl).entries());
-  return {
-    email: String(data.email || '').trim(),
-    name: String(data.name || '').trim(),
-    profile: String(data.profile || '').trim(),
-    interests: String(data.interests || '').trim(),
-    proof: String(data.proof || '').trim(),
-    source: window.location.href,
-    submittedAt: new Date().toISOString(),
-  };
+function go(index) {
+  active = Math.max(0, Math.min(slides.length - 1, index));
+  slides[active].scrollIntoView({ behavior: 'smooth', block: 'start' });
+  update();
 }
 
-function storeLocalLead(lead) {
-  const key = 'research-market-leads';
-  const current = JSON.parse(localStorage.getItem(key) || '[]');
-  current.push(lead);
-  localStorage.setItem(key, JSON.stringify(current));
+function update() {
+  progress.textContent = `${active + 1} / ${slides.length}`;
+  prev.disabled = active === 0;
+  next.disabled = active === slides.length - 1;
+  history.replaceState(null, '', `#${active + 1}`);
 }
 
-function downloadLead(lead) {
-  const blob = new Blob([JSON.stringify(lead, null, 2)], { type: 'application/json' });
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement('a');
-  link.href = url;
-  link.download = `research-market-lead-${Date.now()}.json`;
-  link.click();
-  URL.revokeObjectURL(url);
+function detectActive() {
+  const midpoint = deck.scrollTop + window.innerHeight / 2;
+  active = slides.findIndex((slide, i) => midpoint >= slide.offsetTop && midpoint < (slides[i + 1]?.offsetTop ?? Infinity));
+  if (active < 0) active = 0;
+  update();
 }
 
-function setStatus(message, type = '') {
-  statusEl.textContent = message;
-  statusEl.className = `form-status ${type}`.trim();
-}
-
-form.addEventListener('submit', async (event) => {
-  event.preventDefault();
-  const lead = serializeForm(form);
-  storeLocalLead(lead);
-
-  if (!SIGNUP_ENDPOINT) {
-    downloadLead(lead);
-    setStatus('Saved locally and downloaded as structured JSON. Connect a private form endpoint to store centrally.', 'ok');
-    form.reset();
-    return;
-  }
-
-  try {
-    const response = await fetch(SIGNUP_ENDPOINT, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(lead),
-    });
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    setStatus('Submitted. We stored your context and will follow up.', 'ok');
-    form.reset();
-  } catch (error) {
-    downloadLead(lead);
-    setStatus('Could not reach the signup backend. Your structured signup was saved locally and downloaded.', 'error');
-  }
+prev.addEventListener('click', () => go(active - 1));
+next.addEventListener('click', () => go(active + 1));
+deck.addEventListener('scroll', () => requestAnimationFrame(detectActive), { passive: true });
+window.addEventListener('keydown', (event) => {
+  if (['ArrowRight', 'ArrowDown', 'PageDown', ' '].includes(event.key)) { event.preventDefault(); go(active + 1); }
+  if (['ArrowLeft', 'ArrowUp', 'PageUp'].includes(event.key)) { event.preventDefault(); go(active - 1); }
+  if (event.key === 'Home') go(0);
+  if (event.key === 'End') go(slides.length - 1);
 });
+
+const hashIndex = Number(location.hash.replace('#', '')) - 1;
+if (Number.isInteger(hashIndex) && hashIndex >= 0) go(hashIndex);
+else update();
