@@ -1,11 +1,31 @@
 # Research Market Pitch
 
-A concise slide-style investor pitch website for an open research market.
+Mobile-first investor website for the research-market pivot.
 
-## Local preview
+Live site: https://crypt0n1t369.github.io/research-market-pitch/
 
-Open `index.html` in a browser.
+## Signup storage
 
-## GitHub Pages
+GitHub Pages is static and cannot securely store submissions by itself. The signup form is structured around this lead schema:
 
-This repo is intended to deploy from the `main` branch root.
+```json
+{
+  "email": "person@example.com",
+  "name": "Person Name",
+  "profile": "Investor / fund",
+  "interests": "Topics or expertise",
+  "proof": "Capital, track record, institution, publications, etc.",
+  "source": "page URL",
+  "submittedAt": "ISO timestamp"
+}
+```
+
+To store centrally, add a private form/backend endpoint before `script.js` loads:
+
+```html
+<script>
+  window.RESEARCH_MARKET_SIGNUP_ENDPOINT = "https://your-private-form-endpoint.example/lead";
+</script>
+```
+
+Until an endpoint is configured, submissions are preserved in the visitor browser localStorage and downloaded as structured JSON so no data is silently lost.
