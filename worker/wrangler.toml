@@ -1,0 +1,8 @@
+name = "research-market-signups"
+main = "src/index.js"
+compatibility_date = "2026-05-04"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "research_market_signups"
+database_id = "REPLACE_AFTER_D1_CREATE"
